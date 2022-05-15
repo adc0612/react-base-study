@@ -1,9 +1,10 @@
 import '@/app.css';
+import Cart from './views/cart';
 
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>header</header>
+      <Cart></Cart>
     </div>
   );
 }

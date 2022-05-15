@@ -1,11 +1,10 @@
 import '@/app.css';
-import Items from './components/items';
+import Cart from './views/cart';
 
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>header</header>
-      <Items></Items>
+      <Cart></Cart>
     </div>
   );
 }

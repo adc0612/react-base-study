@@ -17,16 +17,26 @@ class Cart extends Component {
   };
 
   handleIncrement = (item) => {
-    const items = [...this.state.items];
-    const index = items.indexOf(item);
-    items[index].count++;
+    // map으로 state.items 배열 순회하면서 들어온 Item의 id와 같은 item을 찾는다.
+    // 같으면 해당 item의 속성을 ...item을 이용해 기존 속성을 복사하고 count만 1증가해서 return한다.
+    // 만약 id와 같지 않은 Item은 그냥 Return한다.
+    const items = this.state.items.map((obj) => {
+      if (obj.id === item.id) {
+        return { ...item, count: item.count + 1 };
+      }
+      return obj;
+    });
     this.setState({ items });
   };
 
   handleDecrement = (item) => {
-    const items = [...this.state.items];
-    const index = items.indexOf(item);
-    items[index].count = items[index].count - 1 < 0 ? 0 : items[index].count - 1;
+    const items = this.state.items.map((obj) => {
+      if (obj.id === item.id) {
+        const count = item.count - 1;
+        return { ...item, count: count < 0 ? 0 : count };
+      }
+      return obj;
+    });
     this.setState({ items });
   };
 
@@ -42,8 +52,7 @@ class Cart extends Component {
 
   resetItems = () => {
     const items = this.state.items.map((item) => {
-      item.count = 0;
-      return item;
+      return { ...item, count: 0 };
     });
     this.setState({ items });
   };
